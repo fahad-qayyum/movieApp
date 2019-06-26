@@ -1,0 +1,28 @@
+<% include partials/header.ejs%>
+    <h2>Search for a Movie here</h2>
+    <form action="/result" method="get">
+        <label for="keyword">Enter a keyword </label>
+        <input type="text" id="keyword" name="keyword" placeholder="Required" required/>
+        <div>
+        	<label for= "before">Before 2010: </label>
+        	<input id= "before" type="radio" name="time" value="before" required>
+	        <label for= "after">After 2010: </label>
+        	<input id= "after" type="radio" name="time" value="after">
+        	<label for= "any">Any: </label>
+        	<input id= "any" type="radio" name="time" value="any">
+    	</div>
+        <div>
+            <label for="type">Type </label>
+        <select name="type" id="type">
+            <option></option>
+            <option>Movie</option>
+            <option>Series</option>
+            <option>Episode</option>
+        </select>
+        
+        </div>
+        <br>
+        <input type="submit"/>
+    </form>
+
+<% include partials/footer.ejs%>

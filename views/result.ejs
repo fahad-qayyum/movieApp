@@ -1,0 +1,70 @@
+<% include partials/header.ejs%>
+
+<div id="displayBox">
+
+
+    <% if(data.Response == "True"){%>
+        <h3>Here are the result for <%= keyword.toUpperCase()%></h3>
+        <!--if user didnt gave a type-->
+            <%if(type == ""){%>
+                <ul>
+                    <% data.Search.forEach(function(movie){ %>
+                        <%if(time == "any"){%>
+                            <li>
+
+                                <%= movie.Title%> - <em><%= movie.Year%></em> - <%= movie.Type.toUpperCase()%>
+                            </li>
+                        <% }else if(time == "after"){%>
+                            <% if(movie.Year > 2010){%>
+                                <li>
+
+                                    <%= movie.Title%> - <em><%= movie.Year%></em> - <%= movie.Type.toUpperCase()%>
+                                </li>
+                            <%}%>
+                        <% }else if(time == "before"){%>
+                            <% if(movie.Year < 2010){%>
+                                <li>
+
+                                    <%= movie.Title%> - <em><%= movie.Year%></em> - <%= movie.Type.toUpperCase()%>
+                                </li>
+                            <%}%>
+                        <% } %>
+                    <% }); %>
+                </ul> 
+            <!--if user gave a type-->    
+            <%}else if(type!=""){%>
+                <%var type = type.toLowerCase();%>
+                <ul>
+                    <% data.Search.forEach(function(movie){ %>
+                        <% if(movie.Type == type){%>
+                            <%if(time == "any"){%>
+                                <li>
+
+                                    <%= movie.Title%> - <em><%= movie.Year%></em> - <%= movie.Type.toUpperCase()%>
+                                </li>
+                            <% }else if(time == "after"){%>
+                            <% if(movie.Year > 2010){%>
+                                <li>
+
+                                    <%= movie.Title%> - <em><%= movie.Year%></em> - <%= movie.Type.toUpperCase()%>
+                                </li>
+                            <%}%>
+                        <% }else if(time == "before"){%>
+                            <% if(movie.Year < 2010){%>
+                                <li>
+
+                                    <%= movie.Title%> - <em><%= movie.Year%></em> - <%= movie.Type.toUpperCase()%>
+                                </li>
+                            <%}%>
+                        <% }%>
+                        <%}%>
+                    <% }); %>
+                </ul> 
+            <%}%>
+        <% }else{%>
+            <h3>Out of luck! No results found</h3>
+    <% }%>
+
+    <a href="/">Search Again?</a>
+</div>
+<% include partials/footer.ejs%>
